@@ -1,10 +1,31 @@
 {% comment %} test details html {% endcomment %}
 
 <div style='border:solid black 1px;font-family:consolas;text-align:center;'>
-    <h1>Question : {{question}}</h1>
-    <ul>
-        {%for choice in question.choice_set.all %}
-            <button style='cursor:pointer;background:black; color:white; font-family:consolas;font-size:15px;'>{{choice.choice_text}}</button>
-        {% endfor %}
-    </ul>
+    {% comment %} <h1>Question : {{question}}</h1> {% endcomment %}
+    {% if question.choice_set.all %}
+        {% comment %} <ul>
+            {%for choice in question.choice_set.all %}
+                <button style='cursor:pointer;background:black; color:white; font-family:consolas;font-size:15px;'>{{choice.choice_text}}</button>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'polls:results' question.id %}" >Result</a> {% endcomment %}
+        <a href="/polls">Go home</a>
+        <form action="{% url 'polls:votes' question.id %}" method='post'>
+            {% csrf_token %}
+            <fieldset>
+                <legend><h1> {{question.question_text}} </h1></legend>
+                {% if error_message %}<p>{{ error_message }}</p>{% endif %}
+                {% for choice in question.choice_set.all %}
+                    <input type='radio' name='choice' id="choice{{forloop.counter}}" value="{{choice.id}}" >
+                    <label for="choice{{forloop.counter}}"> {{choice.choice_text}} </label>
+                {% endfor %}
+            </fieldset>
+            <input type='submit' value='Vote' />
+        </form>
+    {% else %}
+        <div style='border:solid 1px; text-align:center'>
+            <h1> {{question.question_text}} </h1>
+            No choice for this question in database
+        </div>
+    {% endif %}
 </h1>

@@ -1,0 +1,16 @@
+
+<div style='border:solid 1px; text-align:center;'>
+    <h1> Answer for Question : {{question.question_text}} </h1>
+    {% if question.choice_set.all %}
+        <ul style='list-style:none'>
+            {% for choice in question.choice_set.all %}
+            <li>{{ choice }} , votes : {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'polls:details' question.id %}">Votez again ?</a>
+    {% else %}
+    <div>
+        No choice in database
+    </div>
+    {% endif %}
+</div>
