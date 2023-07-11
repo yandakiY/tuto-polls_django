@@ -1,0 +1,10 @@
+{% comment %} test details html {% endcomment %}
+
+<div style='border:solid black 1px;font-family:consolas;text-align:center;'>
+    <h1>Question : {{question}}</h1>
+    <ul>
+        {%for choice in question.choice_set.all %}
+            <button style='cursor:pointer;background:black; color:white; font-family:consolas;font-size:15px;'>{{choice.choice_text}}</button>
+        {% endfor %}
+    </ul>
+</h1>
