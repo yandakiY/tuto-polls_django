@@ -145,8 +145,8 @@ class QuestionDetailViewTests(TestCase):
 
 
 
-class QuestionResultViewTests(TestCase):
-    pass
+# class QuestionResultViewTests(TestCase):
+#     pass
     
     
 
