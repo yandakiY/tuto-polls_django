@@ -1,0 +1,7 @@
+
+<h1>Questions :</h1>
+<ul>
+    {% for question in question_lists %}
+    <li> <a href="{% url  'sondage:details' question.id %}">{{question}} </a> </li>
+    {% endfor %}
+</ul>
