@@ -1,7 +1,14 @@
-
+{% if question_lists %}
 <h1>Questions :</h1>
 <ul>
     {% for question in question_lists %}
-    <li> <a href="{% url  'sondage:details' question.id %}">{{question}} </a> </li>
+    <li> <a href="{% url  'sondage:details' question.id %}">{{question}} </a>
+         {% if question.is_recent %}(Recent) {% else %} (Not recent) {% endif %}  
+    </li>
     {% endfor %}
 </ul>
+{% else %}
+<div>
+    No polls in database.
+</div>
+{% endif %}
