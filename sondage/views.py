@@ -13,7 +13,7 @@ class IndexView(generic.ListView):
     
     
     def get_queryset(self) -> QuerySet[Any]:
-        return Question.objects.all().filter(date_pub__lte=timezone.now()).order_by('-date_pub')
+        return Question.objects.all().exclude(choice__isnull=True).filter(date_pub__lte=timezone.now()).order_by('-date_pub')
     
 
 class QuestionDetailView(generic.DetailView):

@@ -12,7 +12,15 @@ def create_question(text: str , duration: int):
 
 class IndexViewTest(TestCase):
     
-    
+    # A question recent without a choice
+    def testNoChoiceForQuestion(self):
+        question = create_question(text="No choice" , duration=0)
+        # call index
+        response = self.client.get(reverse('sondage:index'))
+        # 
+        print(response.context['question_lists'])
+        self.assertEqual(len(response.context['question_lists']) , 0)
+        
     # test no questions in database
     def testNoQuestionInDB(self):
         # calls the url sondage, check status code (200) and the contains
@@ -27,6 +35,7 @@ class IndexViewTest(TestCase):
         # create a old date publication
         question_past = create_question(text="Old question" , duration=-30)
         # calls url index
+        Choice.objects.create(question=question_past , choice_text="Choice 1" , votes=0)
         response = self.client.get(reverse('sondage:index'))
         # check Query set
         self.assertQuerysetEqual(response.context['question_lists'] , [question_past])
@@ -46,6 +55,8 @@ class IndexViewTest(TestCase):
         
         # create a recent and future question
         question_past = create_question(text="Old question" , duration=-30)
+        # add a choice for past question
+        Choice.objects.create(question=question_past , choice_text="Choice 1")
         # future question
         create_question(text="future question" , duration=30)
         # calls sondage:index
@@ -58,7 +69,11 @@ class IndexViewTest(TestCase):
         
         # create two olds question
         question_1 = create_question(text="question 1" , duration=-20)
+        # add choice for question_1
+        Choice.objects.create(question=question_1 , choice_text="Choice 1")
         question_2 = create_question(text="question 2" , duration=-5)
+        Choice.objects.create(question=question_2 , choice_text="Choice 2")
+        
         # calls index
         response = self.client.get(reverse('sondage:index'))
         self.assertQuerysetEqual(response.context['question_lists'] , [question_2 , question_1])
