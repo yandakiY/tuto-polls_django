@@ -1,8 +1,15 @@
-<h1>Question : {{question.question_text}} </h1>
-{% comment %} Choice of question {% endcomment %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'sondage/results.css' %}" />
 
-<ul>
-    {% for choice in question.choice_set.all %}
-        <li> {{choice.choice_text}} , Votes : {{choice.votes}} </li>
-    {% endfor %}
-</ul>
+<div id="main">
+    <h1>Question : {{question.question_text}} </h1>
+    {% comment %} Choice of question {% endcomment %}
+    {% comment %} <ul> {% endcomment %}
+    <div id="b-ans">
+        {% for choice in question.choice_set.all %}
+            <div id="ans"> {{choice.choice_text}} , votes : {{choice.votes}} </div>
+        {% endfor %}
+    </div>
+    <a href="{% url 'sondage:index' %}" >Go home</a>
+    {% comment %} </ul> {% endcomment %}
+</div>

@@ -6,19 +6,24 @@
 {% comment %} {% if question.choice_set.all %} {% endcomment %}
 
 <div id="main">
-    {% csrf_token %}
-    <form action="" method="POST">
+    
+    <form 
+        action="{%url "sondage:votes" question.id %}" 
+        method="post"
+    >
+        {% csrf_token %}
         <fieldset>
             <legend>Make your choice</legend>
+            {% if error_message %}<div style="color:red;font-weight:bold;">{{error_message}}</div>{% endif %}
             {% for choice in question.choice_set.all %}
-                <input type="radio" id="choice{{choice.id}}"
-                name="choice" value={{choice.choice_text}}>
+                <input type="radio" id="choice{{choice.id}}" name="choice" value="{{choice.id}}">
                 <label for="contactChoice3">{{choice.choice_text}}</label>    
             {% comment %} <li>{{choice.choice_text}}</li> {% endcomment %}
             {% endfor %}
             <br>
-            <input value="Send" type="button" />
+            <input value="Send" type="submit" />
         </fieldset>
     </form>
+    <a href="{% url 'sondage:index' %}">Go to home</a>
 </div>
     

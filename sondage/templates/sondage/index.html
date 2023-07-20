@@ -8,6 +8,8 @@
         {% for question in question_lists %}
         <li> <a href="{%url "sondage:details" question.id %}">{{question}} </a>
             {% if question.is_recent %}(Recent) {% else %} (Not recent) {% endif %}  
+            <br>
+            <a href="{% url 'sondage:results' question.id %}" style="font-size:15px;">View answers</a>
         </li>
         {% endfor %}
     </ul>
