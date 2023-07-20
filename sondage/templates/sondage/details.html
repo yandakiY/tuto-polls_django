@@ -1,14 +1,24 @@
+{% load static %}
+<link rel="stylesheet" href={% static 'sondage/details.css' %} />
 
-<h1>Question : </h1>
+<h1>Question : {{question.question_text}} </h1>
 {% comment %} Choice {% endcomment %}
-{% if question.choice_set.all %}
-<ul>
-    {% for choice in question.choice_set.all %}
-        <li>{{choice.choice_text}}</li>
-    {% endfor %}
-</ul>
+{% comment %} {% if question.choice_set.all %} {% endcomment %}
 
-{% else %}
-<div>No choice available</div>
-{% endif %}
+<div id="main">
+    {% csrf_token %}
+    <form action="" method="POST">
+        <fieldset>
+            <legend>Make your choice</legend>
+            {% for choice in question.choice_set.all %}
+                <input type="radio" id="choice{{choice.id}}"
+                name="choice" value={{choice.choice_text}}>
+                <label for="contactChoice3">{{choice.choice_text}}</label>    
+            {% comment %} <li>{{choice.choice_text}}</li> {% endcomment %}
+            {% endfor %}
+            <br>
+            <input value="Send" type="button" />
+        </fieldset>
+    </form>
+</div>
     

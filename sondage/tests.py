@@ -78,6 +78,29 @@ class IndexViewTest(TestCase):
         response = self.client.get(reverse('sondage:index'))
         self.assertQuerysetEqual(response.context['question_lists'] , [question_2 , question_1])
 
+
+class DetailViewTest(TestCase):
+    
+    def testViewFutureQuestio(self):
+        
+        question_future = create_question(text="Future Q" , duration=30)
+        # call details
+        url = reverse("sondage:details" , args=(question_future.id,))
+        response = self.client.get(url)
+        #
+        # print()
+        # print("Status code" , response)
+        self.assertEqual(response.status_code , 404)
+        
+    def testViewOldQuestion(self):
+        
+        question_past = create_question(text="Old Question" , duration=-30)
+        # calls details url
+        url = reverse("sondage:details" , args=(question_past.id,))
+        # 
+        response = self.client.get(url)
+        self.assertEqual(response.status_code , 200)
+        
 class QuestionModelTest(TestCase):
 
     # test with a question in date publicatiton in the future

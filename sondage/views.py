@@ -1,4 +1,5 @@
 from typing import Any
+from django.db import models
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.views import generic
@@ -19,6 +20,10 @@ class IndexView(generic.ListView):
 class QuestionDetailView(generic.DetailView):
     model = Question
     template_name = "sondage/details.html"
+    
+    
+    def get_queryset(self) -> QuerySet[Any]:
+        return Question.objects.filter(date_pub__lte=timezone.now())
     
     
 class ResultView(generic.DetailView):

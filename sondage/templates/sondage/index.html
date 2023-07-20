@@ -1,14 +1,19 @@
+{% load static %} 
+<link rel="stylesheet" href="{% static 'sondage/style.css' %}" />
+
 {% if question_lists %}
-<h1>Questions :</h1>
-<ul>
-    {% for question in question_lists %}
-    <li> <a href="{% url  'sondage:details' question.id %}">{{question}} </a>
-         {% if question.is_recent %}(Recent) {% else %} (Not recent) {% endif %}  
-    </li>
-    {% endfor %}
-</ul>
-{% else %}
-<div>
-    No polls in database.
+<h1>Questions : </h1>
+<div id='main'>
+    <ul>
+        {% for question in question_lists %}
+        <li> <a href="{%url "sondage:details" question.id %}">{{question}} </a>
+            {% if question.is_recent %}(Recent) {% else %} (Not recent) {% endif %}  
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <div>
+        No polls in database.
+    </div>
+    {% endif %}
 </div>
-{% endif %}

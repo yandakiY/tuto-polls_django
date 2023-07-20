@@ -1,0 +1,41 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+html{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+body{
+    background-color: darkgray;
+    color:black;
+}
+
+ul{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+ul li{
+    font-size: 25px;
+    font-family: consolas;
+    text-decoration: none;
+    list-style-type: none;
+    background-color: white;
+    margin-top: 10px;
+    padding:10px;
+    width: 35%;
+    border-radius: 10px;
+}
+
+#main{
+    /* background-color: yellow;
+     */
+    border:solid 1px black;
+    padding-bottom: 10px;
+}
