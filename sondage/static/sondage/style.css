@@ -15,6 +15,28 @@ body{
     color:black;
 }
 
+#header{
+    border:solid 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin:5px;
+}
+
+#header a{
+    text-decoration: none;
+    color:white;
+    font-weight: bold;
+    background-color: rgb(69, 69, 134);
+    border: none;
+    padding:7px;
+}
+
+#header a:hover{
+    text-decoration: underline;
+}
+
 ul{
     display: flex;
     flex-direction: column;
@@ -29,7 +51,7 @@ ul li{
     background-color: white;
     margin-top: 10px;
     padding:10px;
-    width: 35%;
+    width: 40%;
     border-radius: 10px;
 }
 

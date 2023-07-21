@@ -1,0 +1,72 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+body, html{
+    /* background-color: rgb(212, 201, 201); */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#main{
+    background-color: darkgray;
+    color:white;
+    font-weight: bold;
+    border:solid .5px;
+    border-radius:5px;
+    padding:10px;
+    font-size:20px;
+    /* width: 75%; */
+    font-family: consolas;
+
+    box-shadow: 5px 5px 5px black;
+}
+
+#main form{
+    padding:3px;
+}
+#main form fieldset{
+    padding:8px;
+    /* color:white; */
+}
+
+#main form fieldset .input-bloc{
+    padding:5px;
+    margin-top: 5px;
+    /* position */
+    display: flex;
+    flex-direction: column;
+}
+#main form fieldset .input-bloc input{
+    height: 40px;
+    font-size: 20px;
+    padding-left: 8px;
+    border-radius: 5px;
+    border:none;
+    margin-top: 2px;
+}
+#main form fieldset .input-bloc input[type="submit"]{
+    /* display: flex;
+    justify-content: center; */
+    padding:10px;
+    background-color: cornflowerblue;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#main form fieldset .input-bloc input[type="submit"]:hover{
+    background-color: rgb(49, 91, 168);
+}
+
+#link-home{
+    margin-top: 10px;
+    text-align: center;
+    font-size: 20px;
+}

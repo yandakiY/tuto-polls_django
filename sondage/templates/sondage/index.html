@@ -2,7 +2,10 @@
 <link rel="stylesheet" href="{% static 'sondage/style.css' %}" />
 
 {% if question_lists %}
-<h1>Questions : </h1>
+<div id="header">
+    <h1>Questions : </h1>
+    <a href="{% url 'sondage:add' %}">Add new quesion</a>
+</div>
 <div id='main'>
     <ul>
         {% for question in question_lists %}
@@ -10,6 +13,7 @@
             {% if question.is_recent %}(Recent) {% else %} (Not recent) {% endif %}  
             <br>
             <a href="{% url 'sondage:results' question.id %}" style="font-size:15px;">View answers</a>
+            <a href="{% url 'sondage:delete' question.id %}" style="font-size:15px;">Delete</a>
         </li>
         {% endfor %}
     </ul>

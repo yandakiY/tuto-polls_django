@@ -52,3 +52,18 @@ def votes(request , question_id):
         choice_selected.save()
         
         return HttpResponseRedirect(reverse("sondage:details" , args=(question_id,)))
+    
+   
+   
+class add(generic.ListView):
+    model = Question
+    template_name = "sondage/add_sondage.html"
+    
+def delete(request , question_id):
+    
+    # get the question who correspond to id
+    question = get_object_or_404(Question , pk=question_id)
+    # delete this
+    question.delete()
+    # redirect to index.html
+    return HttpResponseRedirect(reverse('sondage:index'))
