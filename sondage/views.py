@@ -5,7 +5,7 @@ from django.shortcuts import render , get_object_or_404
 from django.views import generic
 from .models import Question , Choice
 from django.utils import timezone
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 
 # Create your views here.
@@ -64,15 +64,47 @@ class AddQuestionView(generic.ListView):
 def addQuestion(request):
     print(request.POST['question_text'])
     print(request.POST['date_pub'])
+    print(request.POST['nbvotes'])
     
     # create a question occurence
-    new_question = Question(question_text=request.POST['question_text'] , date_pub=request.POST['date_pub'])
+    new_question = Question(question_text=request.POST['question_text'] , date_pub=request.POST['date_pub'] , nbvotes=eval(request.POST['nbvotes']))
     # save this question
     new_question.save()
     
     # get the question save in database and add the choice who correspond
-    return HttpResponseRedirect(reverse("sondage:add"))
+    # get the index
+    indexLastQuestion = len(Question.objects.all()) - 1
+    print('Last index' , indexLastQuestion)
+    # return HttpResponseRedirect(reverse("sondage:add"))
+    return HttpResponseRedirect(reverse("sondage:addChoice" , args=(indexLastQuestion,)))
     # pass
+
+
+# Page view add a choice for a question
+class addChoiceToQuestionView(generic.ListView):
+    model = Question
+    template_name = "sondage/add_choice.html"
+    context_object_name = "question"
+    # model
+    
+    def get_queryset(self):
+        # index = self.request.GET.get('index')
+        # print(index)
+        # print(Question.objects.all()[len(Question.objects.all())-1].question_text)
+        return Question.objects.all()[len(Question.objects.all())-1]
+    
+
+def savechoice(request , question_id):
+    # get question 
+    question = Question.objects.get(id = question_id)
+    print("Question is :{}".format(question))
+    # add choice now
+    for x in range(question.nbvotes):
+        print(request.POST['choice_text{}'.format(x+1)])
+        question.choice_set.create(choice_text=request.POST['choice_text{}'.format(x+1)])
+    
+    # response redirect
+    return HttpResponseRedirect(reverse("sondage:index" , args=()))
 
 # Delete a question from Database
 def delete(request , question_id):

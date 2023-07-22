@@ -10,5 +10,8 @@ urlpatterns = [
     path('<int:question_id>/delete' , views.delete , name="delete"),
     path('add/' , views.AddQuestionView.as_view() , name="add"),
     # Add a new question in database
-    path('saveQuestion' , views.addQuestion, name="saveQuestion")
+    path('saveQuestion' , views.addQuestion, name="saveQuestion"),
+    # add choices to a question 
+    path('<int:index>/addChoice' , views.addChoiceToQuestionView.as_view() , name="addChoice"),
+    path('<int:question_id>/savechoice', views.savechoice , name="savechoice")
 ]

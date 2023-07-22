@@ -8,11 +8,11 @@ class Question(models.Model):
     # property
     question_text = models.CharField(max_length=200)
     date_pub = models.DateTimeField("Date of publiction")
+    nbvotes = models.IntegerField(default=0)
     
     def is_recent(self):
         """Verify if the question is recent. A question recent is a question posted between yesterday and now"""
         now = timezone.now()
-        
         return now - datetime.timedelta(days=1) <= self.date_pub <= now
     
     def __str__(self) -> str:

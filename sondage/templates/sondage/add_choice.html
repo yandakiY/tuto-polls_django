@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Add Choice</title>
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'sondage/add.css' %}">
+  
+</head>
+<body>
+
+    <div style="font-size:18px;" id="main">    
+        <h1 style="font-size:22px;">{{question.question_text}}  {{question.id}} </h1>
+
+        {% comment %} Forms {% endcomment %}
+        <form 
+            action="{% url 'sondage:savechoice' question.id %}" 
+            method="post"
+        >
+            {% csrf_token %}
+            <fieldset>
+                <legend>Add {{question.nbvotes}} Choices :</legend>
+                {% for i in "x"|rjust:question.nbvotes %}
+
+                    <div class="input-bloc">
+                        <label>Choice {{forloop.counter}} : </label>
+                        <input type="text" required="" name="choice_text{{forloop.counter}}"/>
+                    </div>
+
+                {% endfor %}
+                <div class="input-bloc">
+                    <input type='submit' value="Save" />
+                </div> 
+            </fieldset>
+        </form>
+    </div>
+    {% comment %} <a style='text-align:center;' id="link-home" href="{% url 'sondage:index' %}">Go Home</a> {% endcomment %}
+</body>
+
+{% comment %} <script>
+    let d = new Date()
+    let datemin = d.toISOString().slice(0, 16);
+
+    const myDateInput = document.getElementById('myDateInput')
+    myDateInput.min = datemin
+    console.log(myDateInput)
+    console.log(datemin)
+</script> {% endcomment %}
+</html>
