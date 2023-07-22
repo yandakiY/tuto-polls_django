@@ -13,7 +13,8 @@
         <h1>Add a new sondage</h1>
 
         {% comment %} Forms {% endcomment %}
-        <form>
+        <form action="{% url 'sondage:saveQuestion' %}" method="post">
+            {% csrf_token %}
             <fieldset>
                 <legend>Add a new sondage :</legend>
                 <div class="input-bloc">
@@ -23,7 +24,7 @@
 
                 <div class="input-bloc">
                     <label>Date publication : </label>
-                    <input type="datetime-local" id="myDateInput" name="date_pub" min="">
+                    <input type="datetime-local" required id="myDateInput" name="date_pub">
                     {% comment %} <input type="date" name="date_pub"/> {% endcomment %}
                 </div>
 

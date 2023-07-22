@@ -55,10 +55,26 @@ def votes(request , question_id):
     
    
    
-class add(generic.ListView):
+class AddQuestionView(generic.ListView):
     model = Question
     template_name = "sondage/add_sondage.html"
+
+
+# Add a question in database
+def addQuestion(request):
+    print(request.POST['question_text'])
+    print(request.POST['date_pub'])
     
+    # create a question occurence
+    new_question = Question(question_text=request.POST['question_text'] , date_pub=request.POST['date_pub'])
+    # save this question
+    new_question.save()
+    
+    # get the question save in database and add the choice who correspond
+    return HttpResponseRedirect(reverse("sondage:add"))
+    # pass
+
+# Delete a question from Database
 def delete(request , question_id):
     
     # get the question who correspond to id
