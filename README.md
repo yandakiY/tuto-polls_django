@@ -17,16 +17,16 @@ View active polls: The application displays only active polls with a publication
 
 ## Screenshots
 <!-- ![Home Page w/ Text](/public/index.png) -->
-<img src="/public/index.png" alt="Home Page" width="400" height="400"/>
+<img src="/public/index.png" alt="Home Page" width="400" height="500"/>
 
 <!-- ![Polling Page w/ Text](/public/votes.png) -->
-<img src="/public/votes.png" alt="Polling Page" width="200"/>
+<img src="/public/votes.png" alt="Polling Page" width="400"/>
 
 <!-- ![Result Page w/ Text](/public/result.png) -->
-<img src="/public/result.png" alt="Result Page" width="200"/>
+<img src="/public/result.png" alt="Result Page" width="400"/>
 
 <!-- ![Add sondage w/ Text](/public/add%20sondage.png) -->
-<img src="/public/add%20sondage.png" alt="Add sondage Page" width="200"/>
+<img src="/public/add%20sondage.png" alt="Add sondage Page" width="400"/>
 
 
 ## Requirements
