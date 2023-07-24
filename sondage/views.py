@@ -77,7 +77,7 @@ def addQuestion(request):
     print('Last index' , indexLastQuestion)
     # return HttpResponseRedirect(reverse("sondage:add"))
     return HttpResponseRedirect(reverse("sondage:addChoice" , args=(indexLastQuestion,)))
-    # pass
+    
 
 
 # Page view add a choice for a question
