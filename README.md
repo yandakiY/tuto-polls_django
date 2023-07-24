@@ -60,7 +60,7 @@ Django [version 4.2]
 
 4.Access the application in your browser at :
 ```bash
-  http://localhost:8000/
+  http://localhost:8000/sondage
 ```
 ## License
 
