@@ -41,7 +41,7 @@ Django [version 4.2]
 1.Clone the GitHub repository:
 
 ```bash
-  git clone [https://github.com/yandakiY/tuto-polls_django.git]
+  git clone https://github.com/yandakiY/tuto-polls_django.git
 ```
 
 2.Perform database migrations :
